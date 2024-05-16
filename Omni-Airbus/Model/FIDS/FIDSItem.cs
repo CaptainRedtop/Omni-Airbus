@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Omni_Airbus.Model.FIDS
+﻿namespace Omni_Airbus.Model.FIDS
 {
-    internal class FIDSItem
+    public class FIDSItem
     {
+        public FIDSItem(DateTime depature, string destination, int gateID, string airline)
+        {
+            Departure = depature;
+            Destination = destination;
+            GateID = gateID;
+            Airline = airline;
+        }
+
+        public DateTime Departure { get; private set; }
+        public string Destination {get; private set; }
+        public int? GateID { get; private set; }
+        public string Airline { get; private set; }
     }
 }
