@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Omni_Airbus.Model
 {
-    internal class IPusher
+    internal interface IPusher
     {
     }
 }

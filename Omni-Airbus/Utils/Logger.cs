@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Omni_Airbus.Utils
 {
-    internal class Logger
+    internal static class Logger
     {
     }
 }
