@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Omni_Airbus.Utils
+namespace Omni_Airbus.Model.FIDS
 {
-    internal class NumberExtensions
+    internal class FileType
     {
     }
 }
