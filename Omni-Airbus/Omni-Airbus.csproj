@@ -12,4 +12,8 @@
     <Folder Include="View\WebSite\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MySQLConnection" Version="1.0.1" />
+  </ItemGroup>
+
 </Project>

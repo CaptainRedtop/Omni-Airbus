@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using MySql.Data.MySqlClient;
+using System.Text.Json;
 
 namespace Omni_Airbus.Model.FIDS
 {
@@ -16,10 +17,14 @@ namespace Omni_Airbus.Model.FIDS
         {
             while (true)
             {
+                FIDSItems.Clear();
+                using(MySqlConnection conn = new MySqlConnection())
+                {
+
+                }
                 //todo: contact database.
                 //todo: get fIDSItems from database.
                 //todo: Create x new fIDSItems and place them in the fIDSItems list.
-                FIDSItems.Clear();
                 FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 1"));
                 FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 2"));
                 FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 3"));
