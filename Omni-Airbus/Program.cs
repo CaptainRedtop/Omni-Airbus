@@ -1,4 +1,6 @@
-﻿using Omni_Airbus.Model.FIDS;
+﻿using Microsoft.VisualBasic;
+using Omni_Airbus.Model.FIDS;
+using Omni_Airbus.Utils;
 
 namespace Omni_Airbus
 {
