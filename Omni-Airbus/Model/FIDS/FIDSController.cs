@@ -5,14 +5,14 @@
     /// </summary>
     public class FIDSController
     {
-        public FIDSDisplay Display {get; set;}
+        public Utils.MySQL Display {get; set;}
 
         /// <summary>
         /// Creates an intance of FIDSController
         /// </summary>
         public FIDSController()
         {
-            Display = new FIDSDisplay();
+            Display = new Utils.MySQL("CALL GetFlightDetails()");
         }
 
         /// <summary>
