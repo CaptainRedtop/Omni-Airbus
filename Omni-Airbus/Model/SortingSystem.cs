@@ -9,10 +9,10 @@ namespace Omni_Airbus.Model
     public class SortingSystem
     {
         public int BaggageID;
+        public DateTime InboundTime;
+        public DateTime OutboundTime;
         private Queue<Luggage> InboundConveyorBelt;
         private Queue<Luggage> OutboundConveyorBelt;
-
-        // Help with the Time Properties
 
         public SortingSystem()
         {
