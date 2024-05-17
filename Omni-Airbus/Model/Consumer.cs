@@ -9,8 +9,9 @@ namespace Omni_Airbus.Model
     public abstract class Consumer
     {
         protected Luggage CurrentLuggage;
-        protected ConveyerBelt InboundBelt;
+        public ConveyerBelt InboundBelt;
         private readonly object _lock = new object();
+        public int CurrentFlightID;
 
         public Consumer(ConveyerBelt inboundbelt)
         {

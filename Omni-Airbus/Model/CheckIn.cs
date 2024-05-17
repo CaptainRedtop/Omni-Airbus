@@ -10,11 +10,11 @@ namespace Omni_Airbus.Model
     {
         public bool Registered;
         private int ID = 0;
-        private ConveyerBelt InboundBelt;
+        public ConveyerBelt OutboundBelt;
 
         public CheckIn(ConveyerBelt inboundbelt)
         {
-            InboundBelt = inboundbelt;
+            OutboundBelt = inboundbelt;
         }
 
         public void Checked()
@@ -22,8 +22,7 @@ namespace Omni_Airbus.Model
             Luggage luggage = new Luggage();
             ID++;
             luggage.baggageID = ID;
-            InboundBelt.Enqueue(luggage);
+            OutboundBelt.Enqueue(luggage);
         }
-
     }
 }

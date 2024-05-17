@@ -15,6 +15,8 @@ namespace Omni_Airbus.Model
         public bool Gate;
         private readonly object obj = new object();
 
+        //todo: Get Flight
+
         public Terminal(ConveyerBelt inboundbelt) : base(inboundbelt)
         {
             InboundBelt = inboundbelt;

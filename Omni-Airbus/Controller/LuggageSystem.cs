@@ -24,8 +24,7 @@ namespace Omni_Airbus.Controller
 
         public void RunLuggageSystem()
         {
-
+            ThreadPool.QueueUserWorkItem(CheckIn1.Checked)
         }
-
     }
 }
