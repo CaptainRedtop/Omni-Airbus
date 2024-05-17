@@ -17,8 +17,9 @@ namespace Omni_Airbus.Model
             InboundBelt = inboundbelt;
         }
 
-        public void Checked(Luggage luggage)
+        public void Checked()
         {
+            Luggage luggage = new Luggage();
             ID++;
             luggage.baggageID = ID;
             InboundBelt.Enqueue(luggage);
