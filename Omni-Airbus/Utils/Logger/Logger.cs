@@ -1,19 +1,12 @@
-﻿namespace Omni_Airbus.Utils
+﻿namespace Omni_Airbus.Utils.Logger
 {
-    internal enum LogLevel
-    {
-        Information,
-        Debug,
-        Error,
-        Fatal
-    }
 
     /// <summary>
     /// Logger class for writing to a log file.
     /// </summary>
     public class Logger
     {
-        private LogLevel minLogLevel;
+        private LoggerEnum minLogLevel;
         private string logFilePath = Directory.GetCurrentDirectory() + "/log.txt";
 
         /// <summary>
@@ -21,7 +14,7 @@
         /// </summary>
         /// <param name="logFilePath"></param>
         /// <param name="minLogLevel"></param>
-        internal Logger(LogLevel minLogLevel)
+        internal Logger(LoggerEnum minLogLevel)
         {
             this.minLogLevel = minLogLevel;
         }
@@ -31,7 +24,7 @@
         /// </summary>
         /// <param name="level"></param>
         /// <param name="message"></param>
-        private void Log(LogLevel level, string message)
+        private void Log(LoggerEnum level, string message)
         {
             if (level >= minLogLevel)
             {
@@ -50,7 +43,7 @@
         /// <param name="value"></param>
         public void Information(string value)
         {
-            Log(LogLevel.Information, value);
+            Log(LoggerEnum.Information, value);
         }
 
         /// <summary>
@@ -59,7 +52,7 @@
         /// <param name="value"></param>
         public void Debug(string value)
         {
-            Log(LogLevel.Debug, value);
+            Log(LoggerEnum.Debug, value);
         }
 
         /// <summary>
@@ -68,7 +61,7 @@
         /// <param name="value"></param>
         public void Error(string value)
         {
-            Log(LogLevel.Error, value);
+            Log(LoggerEnum.Error, value);
         }
 
         /// <summary>
@@ -77,7 +70,7 @@
         /// <param name="value"></param>
         public void Fatal(string value)
         {
-            Log(LogLevel.Fatal, value);
+            Log(LoggerEnum.Fatal, value);
         }
 
     }
