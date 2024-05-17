@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Omni_Airbus.Model.FIDS
+﻿namespace Omni_Airbus.Model.FIDS
 {
-    internal class FIDSController
+    /// <summary>
+    /// <c>FIDSController</c> manages the FIDSWebServer.
+    /// </summary>
+    public class FIDSController
     {
+        public FIDSDisplay Display {get; set;}
+
+        /// <summary>
+        /// Creates an intance of FIDSController
+        /// </summary>
+        public FIDSController()
+        {
+            Display = new FIDSDisplay();
+        }
+
+        /// <summary>
+        /// Create and start a thread for the WebServer
+        /// </summary>
+        public void StartWebServer()
+        {
+            Thread webServerThread = new(() =>
+            {
+                FIDSWebServer webServer = new();
+                webServer.Host();
+            });
+            webServerThread.Name = "FIDSWebServer";
+            webServerThread.Start();
+        }
     }
 }
