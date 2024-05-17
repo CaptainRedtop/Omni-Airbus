@@ -35,7 +35,7 @@ namespace Omni_Airbus.Utils
         /// <returns></returns>
         public static int ToMinutes(this int value)
         {
-            return value / 60;
+            return value * 1000 * 60;
         }
     }
 }

@@ -2,6 +2,10 @@
 {
     public static class MySQL
     {
-        public const string ConnectionString = "server=localhost;user=root;database=airport_schedule;port=3306;password=";
+        public const string connectionString = "Server=localhost;" +
+                                               "Port=3306;" +
+                                               "Database=airport_schedule;" +
+                                               "User ID=airport;" +
+                                               "Password=password;";
     }
 }

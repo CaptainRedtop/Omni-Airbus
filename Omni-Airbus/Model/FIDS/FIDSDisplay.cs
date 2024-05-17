@@ -1,11 +1,19 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySqlConnector;
+using Omni_Airbus.Utils;
 using System.Text.Json;
 
 namespace Omni_Airbus.Model.FIDS
 {
+    /// <summary>
+    /// <c>FIDSDisplay</c> Controls what will be displayed in the view
+    /// </summary>
     public class FIDSDisplay
     {
         Queue<FIDSItem> FIDSItems { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public FIDSDisplay()
         {
             FIDSItems = new Queue<FIDSItem>();
@@ -13,28 +21,35 @@ namespace Omni_Airbus.Model.FIDS
             thread.Start();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void UpdateFIDSItems()
         {
             while (true)
             {
                 FIDSItems.Clear();
-                using(MySqlConnection conn = new MySqlConnection())
+                using (var conn = new MySqlConnection(MySQL.connectionString))
                 {
+                    string sql = "CALL GetFlightDetails()";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    conn.Open();
+                    Console.WriteLine("Connection successful!");
 
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        int i = 0;
+                        while (reader.Read())
+                        {
+                            if (Convert.ToDateTime(reader[0]) > DateTime.Now)
+                            {
+                                i++;
+                                FIDSItems.Enqueue(new FIDSItem(Convert.ToDateTime(reader[0]), reader[1].ToString(), 1, reader[2].ToString()));
+                                if (i > 10) break;
+                            }
+                        }
+                    }
                 }
-                //todo: contact database.
-                //todo: get fIDSItems from database.
-                //todo: Create x new fIDSItems and place them in the fIDSItems list.
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 1"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 2"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 3"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 4"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 5"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 6"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 7"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 8"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 9"));
-                FIDSItems.Enqueue(new FIDSItem(DateTime.Now, "cph", 1, "Norwegian Air 10"));
 
                 var jsonObject = new
                 {
@@ -44,7 +59,7 @@ namespace Omni_Airbus.Model.FIDS
                 string data = JsonSerializer.Serialize(jsonObject);
                 File.WriteAllText(Path.Combine(FIDSWebServer.BASE_PATH, "departures.json"), data);
                 File.WriteAllText(Path.Combine(FIDSWebServer.BASE_DEBUG_PATH, "departures.json"), data);
-                Thread.Sleep(5000);
+                Thread.Sleep(5.ToMinutes());
                 Console.WriteLine("updated departures.json");
             }
         }
