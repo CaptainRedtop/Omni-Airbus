@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Omni_Airbus.Utils
+﻿namespace Omni_Airbus.Utils
 {
     public static class NumberExtension
     {
