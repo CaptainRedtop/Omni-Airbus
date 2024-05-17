@@ -20,11 +20,7 @@ namespace Omni_Airbus.Model
             OutboundConveyorBelt = new Queue<Luggage>();
         }
 
-        public void PopulateInboundConveyorBelts()
-        {
-
-        }
-        public void PopulateOutboundConveyorBelts()
+        private void SendToGate()
         {
 
         }
