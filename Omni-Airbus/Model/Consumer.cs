@@ -10,6 +10,7 @@ namespace Omni_Airbus.Model
     {
         protected Luggage CurrentLuggage;
         protected ConveyerBelt InboundBelt;
+        private readonly object _lock = new object();
 
         public Consumer(ConveyerBelt inboundbelt)
         {
@@ -18,7 +19,13 @@ namespace Omni_Airbus.Model
 
         public void Pull(object obj)
         {
-
+            while (true)
+            {
+                lock (_lock)
+                {
+                    CurrentLuggage = InboundBelt.Dequeue();
+                }
+            }
         }
     }
 }

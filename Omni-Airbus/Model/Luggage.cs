@@ -8,6 +8,6 @@ namespace Omni_Airbus.Model
 {
     public class Luggage
     {
-
+        public int baggageID { get; set; }
     }
 }
