@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Omni_Airbus.Model.Booking
+﻿namespace Omni_Airbus.Model.Booking
 {
 	/// <summary>
 	/// This represents an airline with an ID and a name.
 	/// </summary>
-	internal class Airline
+	public class Airline
 	{
 		private int _airlineId; 
 		private string _name; 

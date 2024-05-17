@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Omni_Airbus.Model.Booking
+﻿namespace Omni_Airbus.Model.Booking
 {
 	/// <summary>
 	/// Passenger with an ID, first name, last name, passport number, flight ID, and boarding pass number.
 	/// </summary>
-	internal class Passenger
+	public class Passenger
 	{
 		private int _passengerId;
 		private string _firstName;

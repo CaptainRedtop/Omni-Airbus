@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Omni_Airbus.Model.Booking;
+﻿using Omni_Airbus.Model.Booking;
 
 namespace Omni_Airbus.Model
 {
@@ -11,7 +6,7 @@ namespace Omni_Airbus.Model
 	/// This is a reservation system for managing airlines, aircrafts,
 	/// destinations, flights, passengers, and available seats.
 	/// </summary>
-	internal class ReservationsSystem
+	public class ReservationsSystem
 	{
 		private List<Airline> _airlines;
 		private List<Aircraft> _aircrafts; 

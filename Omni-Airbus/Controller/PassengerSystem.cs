@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Omni_Airbus.Model;
+﻿using Omni_Airbus.Model;
 using Omni_Airbus.Model.Booking;
 
 namespace Omni_Airbus.Controller

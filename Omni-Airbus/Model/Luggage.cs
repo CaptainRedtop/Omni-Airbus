@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Omni_Airbus.Model
 {
-    internal class Luggage
+    public class Luggage
     {
+
     }
 }

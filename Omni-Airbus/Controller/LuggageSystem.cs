@@ -8,5 +8,8 @@ namespace Omni_Airbus.Controller
 {
     internal class LuggageSystem
     {
+        public bool CheckIn;
+
+        
     }
 }

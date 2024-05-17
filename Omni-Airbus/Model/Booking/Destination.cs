@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Omni_Airbus.Model.Booking
+﻿namespace Omni_Airbus.Model.Booking
 {
 	/// <summary>
 	/// Destination with an ID, city, country, and airport code.
 	/// </summary>
-	internal class Destination
+	public class Destination
 	{
 		private int _destinationId;
 		private string _city;

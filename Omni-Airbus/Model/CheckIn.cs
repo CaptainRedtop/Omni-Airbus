@@ -8,5 +8,7 @@ namespace Omni_Airbus.Model
 {
     internal class CheckIn
     {
+        public bool Registered;
+
     }
 }

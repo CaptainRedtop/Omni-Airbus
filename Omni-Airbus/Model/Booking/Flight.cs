@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System;
-
-namespace Omni_Airbus.Model.Booking
+﻿namespace Omni_Airbus.Model.Booking
 {
 	/// <summary>
 	/// "Flight" with ID, flight number, departure time, arrival time, airline ID, aircraft ID, and destination ID.
 	/// </summary>
-	internal class Flight
+	public class Flight
 	{
 		private int _flightId; 
 		private string _flightNumber; 

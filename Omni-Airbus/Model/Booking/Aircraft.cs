@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Omni_Airbus.Model.Booking
+﻿namespace Omni_Airbus.Model.Booking
 {
 	/// <summary>
 	/// This gets the aircraft information with an ID, model, and total seats.
 	/// </summary>
-	internal class Aircraft
+	public class Aircraft
 	{
 		private int _aircraftId; 
 		private string _model; 
