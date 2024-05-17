@@ -8,5 +8,6 @@ namespace Omni_Airbus.Model
 {
     internal interface IPusher
     {
+        void Push(object obj);
     }
 }

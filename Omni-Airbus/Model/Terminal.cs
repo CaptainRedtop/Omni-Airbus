@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Omni_Airbus.Model
 {
-    internal class Terminal
+    public class Terminal
     {
+        public bool Gate;
+
     }
 }

@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace Omni_Airbus.Model
 {
-    internal abstract class Consumer
+    public abstract class Consumer
     {
+        protected Luggage CurrentLuggage;
+        protected ConveyerBelt InboundBelt;
+
+        public Consumer(ConveyerBelt inboundbelt)
+        {
+            InboundBelt = inboundbelt;
+        }
+
+        public void Pull(object obj)
+        {
+
+        }
     }
 }
