@@ -1,18 +1,22 @@
-﻿namespace Omni_Airbus.Model.FIDS
+﻿using Omni_Airbus.Utils.Logger;
+
+namespace Omni_Airbus.Model.FIDS
 {
     /// <summary>
     /// <c>FIDSController</c> manages the FIDSWebServer.
     /// </summary>
     public class FIDSController
     {
-        public Utils.MySQL Display {get; set;}
+        public FIDSDisplay Display {get; set;}
+        internal Logger Log;
 
         /// <summary>
         /// Creates an intance of FIDSController
         /// </summary>
         public FIDSController()
         {
-            Display = new Utils.MySQL("CALL GetFlightDetails()");
+            Display = new FIDSDisplay();
+            Log = new Logger(LoggerEnum.Information);
         }
 
         /// <summary>
@@ -20,6 +24,7 @@
         /// </summary>
         public void StartWebServer()
         {
+            Log.Information("Starting WebServer");
             Thread webServerThread = new(() =>
             {
                 FIDSWebServer webServer = new();
@@ -27,6 +32,7 @@
             });
             webServerThread.Name = "FIDSWebServer";
             webServerThread.Start();
+            Log.Information($"Started: {webServerThread.Name}");
         }
     }
 }
