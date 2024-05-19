@@ -35,13 +35,18 @@ namespace Omni_Airbus.Model.FIDS
                 bool flight1 = LuggageSystem.GetFlightId(1, out int flightId1);
                 bool flight2 = LuggageSystem.GetFlightId(2, out int flightId2);
                 Log.Debug($"Flight 1 at terminal: {flight1} | Flight 2 at terminal: {flight1}");
-                if (flight1 && flight2)
-                {
-                    Log.Debug($"Flight 1: {flightId1} | Flight 2{flightId2}");
-                    FIDSItems.Clear();
-                    List<object[]> sqlData = MySQL.DBStatement($"CALL GetFlightDetails({flightId1},{flightId2});");
+                List<object[]> sqlData;
 
-                    DateTime now = DateTime.Now;
+                if (/*flight1 && flight2*/ false)
+                {
+                    sqlData = GetFlightData(flightId1, flightId2);
+                }
+                else
+                {
+                    sqlData = GetTestData();
+                }
+
+                DateTime now = DateTime.Now;
                     var nextFlights = sqlData
                         .Where(row => (DateTime)row[0] > now)          // Filter for flight times after now
                         .OrderBy(row => (DateTime)row[0])              // Sort by flight time
@@ -62,11 +67,22 @@ namespace Omni_Airbus.Model.FIDS
                     string jsonData = JsonSerializer.Serialize(jsonObject);
                     File.WriteAllText(Path.Combine(FIDSWebServer.BASE_PATH, "departures.json"), jsonData);
                     File.WriteAllText(Path.Combine(FIDSWebServer.BASE_DEBUG_PATH, "departures.json"), jsonData);
-
-                    Thread.Sleep(1.ToMilliseconds());
-                }
                 Thread.Sleep(1.ToMilliseconds());
             }
+        }
+
+        private List<object[]> GetFlightData(int flightId1, int flightId2)
+        {
+            Log.Debug($"Flight 1: {flightId1} | Flight 2{flightId2}");
+            FIDSItems.Clear();
+            List<object[]> sqlData = MySQL.DBStatement($"CALL GetFlightDetails({flightId1},{flightId2});");
+            return sqlData;
+        }
+        private List<object[]> GetTestData()
+        {
+            FIDSItems.Clear();
+            List<object[]> sqlData = MySQL.DBStatement($"CALL GetAllFlightDetails();");
+            return sqlData;
         }
     }
 }
