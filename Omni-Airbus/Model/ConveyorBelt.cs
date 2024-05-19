@@ -11,13 +11,15 @@ namespace Omni_Airbus.Model
         public const int MAX_SIZE = 100;
         private Queue<Luggage> LuggageItems;
         private readonly object lockObject = new object();
+        public readonly int ID;
 
         /// <summary>
         /// 
         /// </summary>
-        public ConveyerBelt()
+        public ConveyerBelt(int iD)
         {
             LuggageItems = new Queue<Luggage>();
+            ID = iD;
         }
 
         /// <summary>

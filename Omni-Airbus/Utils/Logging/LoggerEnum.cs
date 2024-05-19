@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Omni_Airbus.Utils.Logger
+namespace Omni_Airbus.Utils.Logging
 {
     public enum LoggerEnum
     {
         Information,
         Debug,
         Error,
-        Fatal
+        Fatal,
+        Report
     }
 }

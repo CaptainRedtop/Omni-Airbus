@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using Omni_Airbus.Utils.Logging;
+using System;
+using System.Net;
 using System.Text;
 
 namespace Omni_Airbus.Model.FIDS
@@ -10,6 +12,7 @@ namespace Omni_Airbus.Model.FIDS
     {
         public const string BASE_PATH = @"C:\Users\Zelan\Source\Repos\Omni-Airbus\Omni-Airbus\View\WebSite\fids\build"; //the base path of the website.
         public const string BASE_DEBUG_PATH = @"C:\Users\Zelan\Source\Repos\Omni-Airbus\Omni-Airbus\View\WebSite\fids\public"; // use this string when debugging the react script
+        private static Logger Log = new Logger(0);
 
         /// <summary>
         /// Initiate the webserver.
@@ -21,6 +24,7 @@ namespace Omni_Airbus.Model.FIDS
             listener.Prefixes.Add(url);
             listener.Start();
             Console.WriteLine($"Listening for requests on {url}");
+            Log.Information($"Listening for requests on {url}");
 
             Run(listener);
         }
@@ -38,6 +42,7 @@ namespace Omni_Airbus.Model.FIDS
                 HttpListenerRequest request = context.Request;
 
                 string requestUrl = BASE_PATH + request.Url.LocalPath; //the base path with the requested path.
+                Log.Information($"request url {requestUrl}");
                 TryServeFile(response, requestUrl);
                 response.Close();
             }

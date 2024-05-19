@@ -1,22 +1,24 @@
-﻿using Omni_Airbus.Utils.Logger;
+﻿using Omni_Airbus.Model.FIDS;
+using Omni_Airbus.Utils.Logging;
 
-namespace Omni_Airbus.Model.FIDS
+namespace Omni_Airbus.Controller
 {
     /// <summary>
     /// <c>FIDSController</c> manages the FIDSWebServer.
     /// </summary>
-    public class FIDSController
+    public class FIDSSystem
     {
-        public FIDSDisplay Display {get; set;}
+        public FIDSDisplay Display { get; set; }
         internal Logger Log;
 
         /// <summary>
         /// Creates an intance of FIDSController
         /// </summary>
-        public FIDSController()
+        public FIDSSystem()
         {
             Display = new FIDSDisplay();
             Log = new Logger(LoggerEnum.Information);
+            StartWebServer();
         }
 
         /// <summary>

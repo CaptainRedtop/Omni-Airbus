@@ -1,15 +1,20 @@
-﻿using Microsoft.VisualBasic;
-using Omni_Airbus.Model.FIDS;
-using Omni_Airbus.Utils;
+﻿using Omni_Airbus.Controller;
+using Omni_Airbus.Utils.Logging;
 
 namespace Omni_Airbus
 {
     internal class Program
     {
+        public static Logger Log = new Logger(0);
         static void Main(string[] args)
         {
-            FIDSController WebServer = new FIDSController();
-            WebServer.StartWebServer();
+            //Starting LuggageSystem in the constructor
+            LuggageSystem luggageSystem = new LuggageSystem();
+
+            //Starting FIDSSystem in the constructor
+            FIDSSystem WebServer = new FIDSSystem();
+            Thread logThread = new Thread(Log.LogThread);
+            logThread.Start();
         }
     }
 }

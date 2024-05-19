@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Omni_Airbus.Utils;
+using Omni_Airbus.Utils.Logging;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Omni_Airbus.Model
 {
@@ -12,39 +9,39 @@ namespace Omni_Airbus.Model
         public int BaggageID;
         public DateTime InboundTime;
         public DateTime OutboundTime;
-        private Queue<Luggage> InboundConveyorBelt;
-        private Queue<Luggage> OutboundConveyorBelt;
+        private List<CheckIn> CheckIns = new List<CheckIn>();
+        private List<Terminal> Terminals = new List<Terminal>();
         internal Assembly assembly = Assembly.GetExecutingAssembly();
+        private Logger Log;
 
-        public SortingSystem(ConveyerBelt inboundbelt) : base(inboundbelt)
+        public SortingSystem(CheckIn CheckIn1, CheckIn CheckIn2, Terminal Terminal1, Terminal Terminal2) : base(null)
         {
-            InboundConveyorBelt = new Queue<Luggage>();
-            OutboundConveyorBelt = new Queue<Luggage>();
+            CheckIns.Add(CheckIn1);
+            CheckIns.Add(CheckIn2);
+            Terminals.Add(Terminal1);
+            Terminals.Add(Terminal2);
+            Log = new Logger(LoggerEnum.Information);
         }
 
         public void PullFromBelts(object obj)
         {
-            for (int i = 0; true;)
+            int i = 0;
+            while (true)
             {
-                Type[] types = assembly.GetTypes();
-                List<CheckIn> checkIns = new List<CheckIn>();
-                foreach (Type type in types)
+                if (Thread.CurrentThread.Name == null)
                 {
-                    if (typeof(CheckIn).IsAssignableFrom(type))
-                    {
-                        CheckIn checkIn = (CheckIn)Activator.CreateInstance(type);
-                        checkIns.Add(checkIn);
-                    }
+                    Thread.CurrentThread.Name = $"Thread: SortingSystem";
                 }
 
-                if (CurrentLuggage == null)
+                bool CheckInsExist = CheckIns[i % CheckIns.Count] != null;
+                bool CheckInIsNotEmpty = CheckIns[i % CheckIns.Count].OutboundBelt.Count > 0;
+                if (CheckInsExist && CheckInIsNotEmpty && CurrentLuggage == null)
                 {
-                    if (checkIns[i % checkIns.Count].OutboundBelt.Count > 0)
-                    {
-                        CurrentLuggage = checkIns[i % checkIns.Count].OutboundBelt.Dequeue();
-                        break;
-                    }
+                    CurrentLuggage = CheckIns[i % CheckIns.Count].OutboundBelt.Dequeue();
+                    Log.Debug($"[{Thread.CurrentThread.Name}] Current Luggage: {CurrentLuggage.baggageID}");
                 }
+                i++;
+                Thread.Sleep(0.01f.ToMilliseconds());
             }
         }
 
@@ -52,27 +49,17 @@ namespace Omni_Airbus.Model
         {
             while (true)
             {
-                Type[] types = assembly.GetTypes();
-                List<Consumer> consumers = new List<Consumer>();
-
-                foreach (Type type in types)
+                foreach (Terminal terminal in Terminals)
                 {
-                    if (typeof(Consumer).IsAssignableFrom(type))
+                    if (CurrentLuggage != null && terminal.CurrentFlight != null && terminal.CurrentFlight.FlightId == CurrentLuggage.FlightID)
                     {
-                        Consumer consumer = (Consumer)Activator.CreateInstance(type);
-                        consumers.Add(consumer);
-                    }
-                }
-
-                foreach (Consumer consumer in consumers)
-                {
-                    if (consumer.CurrentFlightID == CurrentLuggage.flightID)
-                    {
-                        consumer.InboundBelt.Enqueue(CurrentLuggage);
+                        terminal.InboundBelt.Enqueue(CurrentLuggage);
+                        Log.Debug($"[{Thread.CurrentThread.Name}] Current Luggage: {CurrentLuggage.baggageID} sent to Gate: {terminal.ID}");
                         CurrentLuggage = null;
                         break;
                     }
                 }
+                Thread.Sleep(0.01f.ToMilliseconds());
             }
         }
     }

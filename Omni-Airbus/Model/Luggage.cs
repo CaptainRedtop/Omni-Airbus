@@ -11,10 +11,10 @@ namespace Omni_Airbus.Model
         public Luggage(int baggageID, int flightID)
         {
             this.baggageID = baggageID;
-            this.flightID = flightID;
+            this.FlightID = flightID;
         }
 
         public int baggageID { get; private set; }
-        public int flightID { get; private set; }
+        public int FlightID { get; private set; }
     }
 }

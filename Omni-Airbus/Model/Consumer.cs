@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Omni_Airbus.Model.Booking;
+using Omni_Airbus.Utils;
 
 namespace Omni_Airbus.Model
 {
     public abstract class Consumer
     {
-        protected Luggage CurrentLuggage;
-        public ConveyerBelt InboundBelt;
+        protected Luggage? CurrentLuggage;
+        public ConveyerBelt? InboundBelt;
         private readonly object _lock = new object();
-        public int CurrentFlightID;
+        public Flight CurrentFlight;
 
+        public Consumer()
+        {
+        }
         public Consumer(ConveyerBelt inboundbelt)
         {
             InboundBelt = inboundbelt;
         }
 
-        public void Pull(object obj)
+
+        public virtual void Pull(object obj)
         {
             while (true)
             {
@@ -26,6 +27,7 @@ namespace Omni_Airbus.Model
                 {
                     CurrentLuggage = InboundBelt.Dequeue();
                 }
+                Thread.Sleep(0.01f.ToMilliseconds());
             }
         }
     }

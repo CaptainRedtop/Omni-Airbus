@@ -1,9 +1,11 @@
 ﻿using MySqlConnector;
+using Omni_Airbus.Utils.Logging;
 
 namespace Omni_Airbus.Utils
 {
     public static class MySQL
     {
+        private static Logger Log = new Logger(LoggerEnum.Information);
         public const string connectionString = "Server=localhost;" +
                                                "Port=3306;" +
                                                "Database=airport_schedule;" +
@@ -16,7 +18,7 @@ namespace Omni_Airbus.Utils
             {
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 conn.Open();
-                Console.WriteLine("Connection successful!");
+                Log.Information($"Database Connection successful");
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -27,6 +29,7 @@ namespace Omni_Airbus.Utils
                         reader.GetValues(val);
                         rows.Add(val);
                     }
+                    Log.Information($"Command returned {rows.Count} rows");
                     return rows;
                 }
             }
