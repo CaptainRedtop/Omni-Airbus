@@ -5,7 +5,10 @@ namespace Omni_Airbus
 {
     internal class Program
     {
-        public static Logger Log = new Logger(0);
+		/// <summary>
+		/// The main entry point for the Omni-Airbus application.
+		/// </summary>
+		public static Logger Log = new Logger(0);
         static void Main(string[] args)
         {
             //Starting LuggageSystem in the constructor

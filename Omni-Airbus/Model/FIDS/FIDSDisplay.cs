@@ -1,22 +1,20 @@
-﻿using MySqlConnector;
-using Omni_Airbus.Controller;
-using Omni_Airbus.Model.Booking;
+﻿using Omni_Airbus.Controller;
 using Omni_Airbus.Utils;
 using Omni_Airbus.Utils.Logging;
 using System.Text.Json;
 
 namespace Omni_Airbus.Model.FIDS
 {
-    /// <summary>
-    /// <c>FIDSDisplay</c> Controls what will be displayed in the view
-    /// </summary>
-    public class FIDSDisplay
+	/// <summary>
+	/// <c>FIDSDisplay</c> Controls what will be displayed in the view
+	/// </summary>
+	public class FIDSDisplay
     {
         Queue<FIDSItem> FIDSItems { get; set; }
         Logger Log = new Logger(LoggerEnum.Information);
 
         /// <summary>
-        /// Start the UpdateFIDSItems thread.
+        /// Start the update FIDSItems thread.
         /// </summary>
         public FIDSDisplay()
         {
@@ -26,7 +24,7 @@ namespace Omni_Airbus.Model.FIDS
         }
 
         /// <summary>
-        /// Update the Fids Items
+        /// Update the FIDS Items
         /// </summary>
         public void UpdateFIDSItems()
         {

@@ -12,7 +12,7 @@ namespace Omni_Airbus.Controller
         internal Logger Log;
 
         /// <summary>
-        /// Creates an intance of FIDSController
+        /// Creates an intance of FIDSSytem.
         /// </summary>
         public FIDSSystem()
         {

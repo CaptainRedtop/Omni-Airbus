@@ -1,20 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Omni_Airbus.Model
+﻿namespace Omni_Airbus.Model
 {
-    public class Luggage
-    {
-        public Luggage(int baggageID, int flightID)
-        {
-            this.baggageID = baggageID;
-            this.FlightID = flightID;
-        }
+	/// <summary>
+	/// Represents a piece of luggage in the Omni Airbus model.
+	/// </summary>
+	public class Luggage
+	{
+		/// <summary>
+		/// Initializes a new instance of the Luggage class with a specified baggage ID and flight ID.
+		/// </summary>
+		/// <param name="baggageID">The ID of the baggage.</param>
+		/// <param name="flightID">The ID of the flight.</param>
+		public Luggage(int baggageID, int flightID)
+		{
+			this.baggageID = baggageID;
+			this.FlightID = flightID;
+		}
 
-        public int baggageID { get; private set; }
-        public int FlightID { get; private set; }
-    }
+		/// <summary>
+		/// Gets the ID of the baggage.
+		/// </summary>
+		public int baggageID { get; private set; }
+
+		/// <summary>
+		/// Gets the ID of the flight.
+		/// </summary>
+		public int FlightID { get; private set; }
+	}
 }

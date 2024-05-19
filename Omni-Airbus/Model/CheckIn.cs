@@ -4,6 +4,10 @@ using Omni_Airbus.Utils.Logging;
 
 namespace Omni_Airbus.Model
 {
+        /// <summary>
+    /// Represents a check-in station in the airport luggage system.
+    /// This class handles the registration of luggage and its transfer to outbound conveyer belts.
+    /// </summary>
     public class CheckIn
     {
         public bool Registered;
@@ -23,7 +27,12 @@ namespace Omni_Airbus.Model
             luggageID = 0;
         }
 
-        public void Checked(object obj)
+
+		/// <summary>
+		/// Continuously checks in luggage until the check-in station is closed.
+		/// </summary>
+		/// <param name="obj">Unused parameter required by the delegate signature.</param>
+		public void Checked(object obj)
         {
             while (true)
             {
@@ -51,8 +60,12 @@ namespace Omni_Airbus.Model
                 Thread.Sleep(0.01f.ToMilliseconds());
             }
         }
-        
-        public static int GetLuggageCheckedIn()
+
+		/// <summary>
+		/// Retrieves the total number of luggage checked into the system.
+		/// </summary>
+		/// <returns>The total number of luggage checked in.</returns>
+		public static int GetLuggageCheckedIn()
         {
             return luggageID;
         }

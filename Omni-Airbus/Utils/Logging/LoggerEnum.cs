@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Omni_Airbus.Utils.Logging
 {
-    public enum LoggerEnum
+	/// <summary>
+	/// Enum representing different logging levels from their severity.
+	/// </summary>
+	public enum LoggerEnum
     {
         Information,
         Debug,

@@ -2,15 +2,13 @@
 using Omni_Airbus.Model.Booking;
 using Omni_Airbus.Utils;
 using Omni_Airbus.Utils.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/// <summary>
+/// Represents the core logic for managing the luggage system in an airport scenario.
+/// </summary>
 namespace Omni_Airbus.Controller
 {
-    internal class LuggageSystem
+	internal class LuggageSystem
     {
         private static ConveyerBelt CheckInBelt1 = new ConveyerBelt(1);
         private static ConveyerBelt CheckInBelt2 = new ConveyerBelt(2);
@@ -32,8 +30,10 @@ namespace Omni_Airbus.Controller
         {
             RunLuggageSystem();
         }
-
-        public void RunLuggageSystem()
+		/// <summary>
+		/// Initializes the luggage system and starts the threads.
+		/// </summary>
+		public void RunLuggageSystem()
         {
             Flights = Flight.GetFlights();
             Thread CheckIn1Thread = new Thread(CheckIn1.Checked);
@@ -79,7 +79,7 @@ namespace Omni_Airbus.Controller
             return true;
         }
 
-        public static void die(object obj)
+        public static void die(object obj)  // Kills the threads and exits
         {
             while (true)
             {

@@ -1,13 +1,11 @@
 ﻿using Omni_Airbus.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Omni_Airbus.Utils.Logging
 {
-    public class Report
+    /// <summary>
+    /// Generates an end-"status report".
+    /// </summary>
+	public class Report
     {
         public static HashSet<int> Aircrafts = new HashSet<int>();
         public static HashSet<int> Flights = new HashSet<int>();

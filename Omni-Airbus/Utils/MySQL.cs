@@ -3,7 +3,11 @@ using Omni_Airbus.Utils.Logging;
 
 namespace Omni_Airbus.Utils
 {
-    public static class MySQL
+	/// <summary>
+	/// Utility class for interacting with a MySQL database.
+    /// DBStatement takes an SQL string.
+	/// </summary>
+	public static class MySQL
     {
         private static Logger Log = new Logger(LoggerEnum.Information);
         public const string connectionString = "Server=localhost;" +
@@ -12,7 +16,12 @@ namespace Omni_Airbus.Utils
                                                "User ID=airport;" +
                                                "Password=password;";
 
-        public static List<object[]> DBStatement(string sql)
+		/// <summary>
+		/// Executes a SQL statement against the MySQL database and returns the result as a list of object arrays.
+		/// </summary>
+		/// <param name="sql">The SQL query to execute.</param>
+		/// <returns>A list of object arrays representing the rows returned by the query.</returns>
+		public static List<object[]> DBStatement(string sql)
         {
             using (var conn = new MySqlConnection(MySQL.connectionString))
             {
