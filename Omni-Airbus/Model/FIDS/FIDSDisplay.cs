@@ -65,8 +65,8 @@ namespace Omni_Airbus.Model.FIDS
                     };
 
                     string jsonData = JsonSerializer.Serialize(jsonObject);
-                    File.WriteAllText(Path.Combine(FIDSWebServer.BASE_PATH, "departures.json"), jsonData);
-                    File.WriteAllText(Path.Combine(FIDSWebServer.BASE_DEBUG_PATH, "departures.json"), jsonData);
+                    File.WriteAllText(Path.Combine(FIDSWebServer.BasePath, "departures.json"), jsonData);
+                    File.WriteAllText(Path.Combine(FIDSWebServer.BaseDebugPath, "departures.json"), jsonData);
                 Thread.Sleep(1.ToMilliseconds());
             }
         }
