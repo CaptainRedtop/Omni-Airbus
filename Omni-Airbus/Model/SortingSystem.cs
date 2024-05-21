@@ -44,7 +44,7 @@ namespace Omni_Airbus.Model
 
 				bool CheckInsExist = CheckIns[i % CheckIns.Count] != null;
 				bool CheckInIsNotEmpty = CheckIns[i % CheckIns.Count].OutboundBelt.Count > 0;
-				if (CheckInsExist && CheckInIsNotEmpty && CurrentLuggage == null)
+				if (CheckInsExist && CheckInIsNotEmpty && CurrentLuggage != null)
 				{
 					CurrentLuggage = CheckIns[i % CheckIns.Count].OutboundBelt.Dequeue();
 					Log.Debug($"[{Thread.CurrentThread.Name}] Current Luggage: {CurrentLuggage.baggageID}");
